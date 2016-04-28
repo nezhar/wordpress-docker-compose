@@ -1,0 +1,32 @@
+version: '2'
+services:
+  wordpress:
+    image: wordpress:latest
+    ports:
+      - 127.0.10.10:80:80 # change ip if required
+    volumes:
+      - ./wp-app:/var/www/html
+    environment:
+      WORDPRESS_DB_HOST: db
+      WORDPRESS_DB_NAME: wordpress
+      WORDPRESS_DB_USER: root
+      WORDPRESS_DB_PASSWORD: password
+    links:
+      - db:db
+    networks:
+      - wordpress-network
+  db:
+    image: mysql:latest # or mariadb
+    ports:
+      - 3306:3306
+    volumes:
+      - ./wp-data:/docker-entrypoint-initdb.d
+    environment:
+      MYSQL_DATABASE: wordpress
+      MYSQL_ROOT_PASSWORD: password
+    networks:
+      - wordpress-network
+
+networks:
+  wordpress-network:
+      driver: bridge
