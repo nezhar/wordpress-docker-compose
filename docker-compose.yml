@@ -18,7 +18,7 @@ services:
   db:
     image: mysql:latest # or mariadb
     ports:
-      - 3306:3306
+      - 127.0.10.10:3306:3306 # change ip if required
     volumes:
       - ./wp-data:/docker-entrypoint-initdb.d
     environment:
