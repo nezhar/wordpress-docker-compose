@@ -64,6 +64,24 @@ define('WP_SITEURL','http://wp-app.local');
 
 ## Creating database dumps
 ```
-sudo docker-compose exec db sh -c 'exec mysqldump "$MYSQL_DATABASE" -uroot -p"$MYSQL_ROOT_PASSWORD"' > wp-data/data.sql
+sudo ./export.sh
 ```
 ---
+
+## Developing a Theme
+
+Configure the volume to load the theme in the container in the docker-compose.yml
+
+```
+volumes:
+  - ./theme-name/trunk/:/var/www/html/wp-content/themes/theme-name
+```
+
+## Developing a Plugin
+
+Configure the volume to load the plugin in the container in the docker-compose.yml
+
+```
+volumes:
+  - ./plugin-name/trunk/:/var/www/html/wp-content/plugins/plugin-name
+```

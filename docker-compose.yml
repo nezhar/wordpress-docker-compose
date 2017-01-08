@@ -1,11 +1,13 @@
 version: '2'
 services:
   wordpress:
-    image: wordpress:latest
+    image: wordpress:latest # https://hub.docker.com/_/wordpress/
     ports:
       - 127.0.10.10:80:80 # change ip if required
     volumes:
-      - ./wp-app:/var/www/html
+      - ./wp-app:/var/www/html # Full wordpress project
+      #- ./plugin-name/trunk/:/var/www/html/wp-content/plugins/plugin-name # Plugin development
+      #- ./theme-name/trunk/:/var/www/html/wp-content/themes/theme-name # Theme development
     environment:
       WORDPRESS_DB_HOST: db
       WORDPRESS_DB_NAME: wordpress
@@ -16,7 +18,7 @@ services:
     networks:
       - wordpress-network
   db:
-    image: mysql:latest # or mariadb
+    image: mysql:latest # https://hub.docker.com/_/mysql/ - or mariadb https://hub.docker.com/_/mariadb
     ports:
       - 127.0.10.10:3306:3306 # change ip if required
     volumes:
