@@ -13,14 +13,12 @@ services:
       WORDPRESS_DB_NAME: wordpress
       WORDPRESS_DB_USER: root
       WORDPRESS_DB_PASSWORD: password
-    # links:
-    #   - db:db
     depends_on:
       - db
   db:
     image: mysql:latest # https://hub.docker.com/_/mysql/ - or mariadb https://hub.docker.com/_/mariadb
     ports:
-      - 306:3306 # change ip if required
+      - 3306:3306 # change ip if required
     volumes:
       - ./wp-data:/docker-entrypoint-initdb.d
     environment:
