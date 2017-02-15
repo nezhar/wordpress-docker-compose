@@ -3,7 +3,7 @@ services:
   wordpress:
     image: wordpress:latest # https://hub.docker.com/_/wordpress/
     ports:
-      - 127.0.0.01:80:80 # change ip if required
+      - 127.0.0.1:80:80 # change ip if required
     volumes:
       - ./wp-app:/var/www/html # Full wordpress project
       #- ./plugin-name/trunk/:/var/www/html/wp-content/plugins/plugin-name # Plugin development
