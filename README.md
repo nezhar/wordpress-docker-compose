@@ -11,7 +11,7 @@ In the file you may change the IP address (in case you run multiple containers) 
 
 ##### Create containers
 
-Open a terminal and *cd* to the folde ryou have the docker-compose.yml and run:
+Open a terminal and *cd* to the folder you have the docker-compose.yml and run:
 ```
 sudo docker-compose up
 ```
