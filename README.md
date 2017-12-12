@@ -42,7 +42,7 @@ sudo docker-compose down
 ```
 ... or the **rm** command if the containers are stopped already.
 ```
-sudo docker-compose rm --all
+sudo docker-compose rm
 ```
 
 ## Project from existing source
