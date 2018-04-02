@@ -22,7 +22,7 @@ This create 2 new folders beside your docker-compose.yml file.
 
 The containers are now build and running. You should be able to access the Wordpress installation with the configured IP in the browser address. For convenience you may add a new entry into your hosts file.
 
-##### Strating containers
+##### Starting containers
 
 You can start the containers with the up command in daemon mode (by adding **-d** as a param) or by using the start command:
 ```
