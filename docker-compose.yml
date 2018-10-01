@@ -1,6 +1,7 @@
-version: '2'
+version: '3'
+
 services:
-  wordpress:
+  wp:
     image: wordpress:latest # https://hub.docker.com/_/wordpress/
     ports:
       - 127.0.0.1:80:80 # change ip if required
@@ -16,8 +17,16 @@ services:
       WORDPRESS_DB_PASSWORD: password
     depends_on:
       - db
-    networks:
-      - wordpress-network
+
+  wpcli:
+    image: wordpress:cli
+    user: xfs
+    volumes:
+      - ./wp-app:/var/www/html
+    depends_on:
+      - db
+      - wp
+
   db:
     image: mysql:latest # https://hub.docker.com/_/mysql/ - or mariadb https://hub.docker.com/_/mariadb
     ports:
@@ -29,11 +38,10 @@ services:
     ]
     volumes:
       - ./wp-data:/docker-entrypoint-initdb.d
+      - db_data:/var/lib/mysql
     environment:
       MYSQL_DATABASE: wordpress
       MYSQL_ROOT_PASSWORD: password
-    networks:
-      - wordpress-network
-networks:
-  wordpress-network:
-      driver: bridge
+
+volumes:
+  db_data:
