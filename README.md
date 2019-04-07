@@ -19,7 +19,13 @@ Make sure to [add your user to the `docker` group](https://docs.docker.com/insta
 
 ## Configuration
 
-Edit the `.env` file to change the default IP address, MySQL root password and WordPress database name.
+Use the following environment variables to change the default IP address, MySQL root password and WordPress database name:
+
+- `IP`: IP address to bind to
+- `DB_NAME`: WordPress database name
+- `DB_ROOT_PASSWORD`: MySQL root password
+
+These can be added to an `.env` file as well.
 
 ## Installation
 
