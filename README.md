@@ -2,6 +2,12 @@
 
 Easy WordPress development with Docker and Docker Compose.
 
+With this project you can quickly run the following:
+
+- [WordPress and WP CLI](https://hub.docker.com/_/wordpress/)
+- [phpMyAdmin](https://hub.docker.com/r/phpmyadmin/phpmyadmin/)
+- [MySQL](https://hub.docker.com/_/mysql/)
+
 Contents:
 
 - [Requirements](#requirements)
@@ -139,3 +145,9 @@ This way you can use the CLI command above as follows:
 ```
 wp plugin list
 ```
+
+### phpMyAdmin
+
+You can also visit `http://127.0.0.1:8080` to access phpMyAdmin after starting the containers.
+
+The default username is `root`, and the password is the same as supplied in the `.env` file.
