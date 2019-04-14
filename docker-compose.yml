@@ -17,6 +17,8 @@ services:
       WORDPRESS_DB_PASSWORD: "${DB_ROOT_PASSWORD}"
     depends_on:
       - db
+    links:
+      - db
 
   wpcli:
     image: wordpress:cli
