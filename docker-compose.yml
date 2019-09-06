@@ -15,6 +15,8 @@ services:
       WORDPRESS_DB_NAME: "${DB_NAME}"
       WORDPRESS_DB_USER: root
       WORDPRESS_DB_PASSWORD: "${DB_ROOT_PASSWORD}"
+      APACHE_RUN_USER: 1000
+      APACHE_RUN_GROUP: 1000      
     depends_on:
       - db
     links:
