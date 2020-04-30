@@ -32,6 +32,7 @@ services:
   pma:
     image: phpmyadmin/phpmyadmin
     environment:
+      # https://docs.phpmyadmin.net/en/latest/setup.html#docker-environment-variables
       PMA_HOST: db
       PMA_PORT: 3306
       MYSQL_ROOT_PASSWORD: "${DB_ROOT_PASSWORD}"
