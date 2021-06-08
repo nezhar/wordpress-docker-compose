@@ -1,10 +1,21 @@
 version: '3'
 
 services:
+  #nginx:
+    #image: valian/docker-nginx-auto-ssl:1.2.0
+    #ports:
+      #- 80:80
+      #- 443:443
+    #volumes:
+      #- ./ssl_data:/etc/resty-auto-ssl
+    #environment:
+      #ALLOWED_DOMAINS: 'yourdomain.com'
+      #SITES: 'yourdomain.com=wp:80'
+
   wp:
     image: wordpress:latest # https://hub.docker.com/_/wordpress/
     ports:
-      - ${IP}:80:80 # change ip if required
+      - ${IP}:8090:80 # change ip if required
     volumes:
       - ./config/php.conf.ini:/usr/local/etc/php/conf.d/conf.ini
       - ./wp-app:/var/www/html # Full wordpress project
