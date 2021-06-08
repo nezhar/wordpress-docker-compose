@@ -15,7 +15,8 @@ services:
   wp:
     image: wordpress:latest # https://hub.docker.com/_/wordpress/
     ports:
-      - ${IP}:8090:80 # change ip if required
+      - ${IP}:80:80 # change ip if required
+      #- ${IP}:8090:80 # Uncomment this if you use nginx container above
     volumes:
       - ./config/php.conf.ini:/usr/local/etc/php/conf.d/conf.ini
       - ./wp-app:/var/www/html # Full wordpress project
