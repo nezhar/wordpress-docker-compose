@@ -1,2 +1,14 @@
+jetpack
 all-in-one-wp-migration
-duplicator
+jetpack-boost
+autoptimize
+litespeed-cache
+complianz-gdpr
+contact-form-7
+custom-css-js
+scripts-n-styles
+easy-google-fonts
+elementor
+wordpress-seo
+essential-addons-for-elementor-lite
+header-footer-elementor
