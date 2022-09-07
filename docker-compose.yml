@@ -41,6 +41,7 @@ services:
       PMA_HOST: db
       PMA_PORT: 3306
       MYSQL_ROOT_PASSWORD: "${DB_ROOT_PASSWORD}"
+      UPLOAD_LIMIT: 50M
     ports:
       - ${IP}:8080:80
     links:
