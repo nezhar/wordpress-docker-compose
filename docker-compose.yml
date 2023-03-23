@@ -1,8 +1,9 @@
 version: '3'
+name: cabinets-plus-website
 
 services:
   wp:
-    image: wordpress:latest # https://hub.docker.com/_/wordpress/
+    image: wordpress:6.1.1-php7.4-apache # https://hub.docker.com/_/wordpress/
     ports:
       - ${IP}:${PORT}:80 # change ip if required
     volumes:
