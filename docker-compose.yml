@@ -1,5 +1,5 @@
 version: '3'
-name: cabinets-plus-website
+name: wordpress-6.1.1_php-7.4
 
 services:
   wp:
