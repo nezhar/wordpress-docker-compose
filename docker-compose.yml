@@ -1,68 +1,55 @@
-version: '3'
-name: wordpress-6.1.1_php-7.4
+version: "3.8"
 
 services:
   wp:
-    image: wordpress:6.1.1-php7.4-apache # https://hub.docker.com/_/wordpress/
+    container_name: wordpress_cabinets-plus
+    image: wordpress:6.1.1-php7.4-apache
     ports:
-      - ${IP}:${PORT}:80 # change ip if required
-    volumes:
-      - ./config/php.conf.ini:/usr/local/etc/php/conf.d/conf.ini
-      - ./wp-app:/var/www/html # Full wordpress project
-      #- ./plugin-name/trunk/:/var/www/html/wp-content/plugins/plugin-name # Plugin development
-      #- ./theme-name/trunk/:/var/www/html/wp-content/themes/theme-name # Theme development
-    environment:
-      WORDPRESS_DB_HOST: db
-      WORDPRESS_DB_NAME: "${DB_NAME}"
-      WORDPRESS_DB_USER: root
-      WORDPRESS_DB_PASSWORD: "${DB_ROOT_PASSWORD}"
-    depends_on:
-      - db
-    links:
-      - db
-
-  wpcli:
-    image: wordpress:cli
+      - :${WP_PORT}:80
     volumes:
       - ./config/php.conf.ini:/usr/local/etc/php/conf.d/conf.ini
       - ./wp-app:/var/www/html
+
     environment:
-      WORDPRESS_DB_HOST: db
-      WORDPRESS_DB_NAME: "${DB_NAME}"
+      WORDPRESS_DB_HOST: mysql
+      WORDPRESS_DB_NAME: "${WP_DB_NAME}"
       WORDPRESS_DB_USER: root
-      WORDPRESS_DB_PASSWORD: "${DB_ROOT_PASSWORD}"
+      WORDPRESS_DB_PASSWORD: "${WP_DB_ROOT_PASSWORD}"
     depends_on:
-      - db
-      - wp
+      - mysql
+    links:
+      - mysql
 
   pma:
+    container_name: pma_cabinets-plus
     image: phpmyadmin/phpmyadmin
     environment:
-      # https://docs.phpmyadmin.net/en/latest/setup.html#docker-environment-variables
-      PMA_HOST: db
+      PMA_HOST: mysql
       PMA_PORT: 3306
-      MYSQL_ROOT_PASSWORD: "${DB_ROOT_PASSWORD}"
+      MYSQL_ROOT_PASSWORD: "${WP_DB_ROOT_PASSWORD}"
       UPLOAD_LIMIT: 50M
     ports:
-      - ${IP}:8080:80
+      - :8080:80
     links:
-      - db:db
+      - mysql:mysql
 
-  db:
-    image: mysql:latest # https://hub.docker.com/_/mysql/ - or mariadb https://hub.docker.com/_/mariadb
+  mysql:
+    container_name: mysql_cabinets-plus
+    image: mysql:latest
     ports:
-      - ${IP}:3306:3306 # change ip if required
-    command: [
-        '--default_authentication_plugin=mysql_native_password',
-        '--character-set-server=utf8mb4',
-        '--collation-server=utf8mb4_unicode_ci'
-    ]
+      - 3306:3306
+    command:
+      [
+        "--default_authentication_plugin=mysql_native_password",
+        "--character-set-server=utf8mb4",
+        "--collation-server=utf8mb4_unicode_ci",
+      ]
     volumes:
       - ./wp-data:/docker-entrypoint-initdb.d
       - db_data:/var/lib/mysql
     environment:
-      MYSQL_DATABASE: "${DB_NAME}"
-      MYSQL_ROOT_PASSWORD: "${DB_ROOT_PASSWORD}"
+      MYSQL_DATABASE: "${WP_DB_NAME}"
+      MYSQL_ROOT_PASSWORD: "${WP_DB_ROOT_PASSWORD}"
 
 volumes:
   db_data:
