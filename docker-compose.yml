@@ -35,7 +35,7 @@ services:
       - wp
 
   pma:
-    image: phpmyadmin/phpmyadmin
+    image: phpmyadmin:latest  # https://hub.docker.com/_/phpmyadmin
     environment:
       # https://docs.phpmyadmin.net/en/latest/setup.html#docker-environment-variables
       PMA_HOST: db
@@ -49,6 +49,7 @@ services:
 
   db:
     image: mysql:latest # https://hub.docker.com/_/mysql/ - or mariadb https://hub.docker.com/_/mariadb
+    # platform: linux/x86_64  # Uncomment if your machine is running on arm (ex: Apple Silicon processor)
     ports:
       - ${IP}:3306:3306 # change ip if required
     command: [
