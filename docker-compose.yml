@@ -2,7 +2,10 @@ version: '3'
 
 services:
   wp:
-    image: wordpress:latest # https://hub.docker.com/_/wordpress/
+    build:
+      args:
+        WP_IMAGE: wordpress:latest # https://hub.docker.com/_/wordpress/
+      context: ./docker/wordpress/
     ports:
       - ${IP}:${PORT}:80 # change ip if required
     volumes:
