@@ -6,7 +6,7 @@ services:
     ports:
       - ${IP}:${PORT}:80 # change ip if required
     volumes:
-      - ./config/php.conf.ini:/usr/local/etc/php/conf.d/conf.ini
+      - ./config/wp_php.ini:/usr/local/etc/php/conf.d/conf.ini
       - ./wp-app:/var/www/html # Full wordpress project
       #- ./plugin-name/trunk/:/var/www/html/wp-content/plugins/plugin-name # Plugin development
       #- ./theme-name/trunk/:/var/www/html/wp-content/themes/theme-name # Theme development
@@ -23,7 +23,7 @@ services:
   wpcli:
     image: wordpress:cli
     volumes:
-      - ./config/php.conf.ini:/usr/local/etc/php/conf.d/conf.ini
+      - ./config/wp_php.ini:/usr/local/etc/php/conf.d/conf.ini
       - ./wp-app:/var/www/html
     environment:
       WORDPRESS_DB_HOST: db
@@ -46,6 +46,9 @@ services:
       - ${IP}:8080:80
     links:
       - db:db
+    volumes:
+     - ./config/pma_php.ini:/usr/local/etc/php/conf.d/conf.ini
+     - ./config/pma_config.php:/etc/phpmyadmin/config.user.inc.php
 
   db:
     image: mysql:latest # https://hub.docker.com/_/mysql/ - or mariadb https://hub.docker.com/_/mariadb
